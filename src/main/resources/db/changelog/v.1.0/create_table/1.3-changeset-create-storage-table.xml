@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1.3" author="Vladimir_Kirdyankin">
+        <createTable tableName="storage">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="toy_id" type="int"/>
+            <column name="count" type="int"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="storage" baseColumnNames="toy_id"
+                                 constraintName="storage_toy_id_toy_id"
+                                 referencedTableName="toy" referencedColumnNames="id" onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>
