@@ -12,4 +12,16 @@
 
     <include file="create_table/1.3-changeset-create-storage-table.xml" relativeToChangelogFile="true"/>
 
+    <include file="create_table/1.4-changeset-create-user-table.xml" relativeToChangelogFile="true"/>
+
+    <include file="create_table/1.5-changeset-create-order-table.xml" relativeToChangelogFile="true"/>
+
+    <include file="create_table/1.6-changeset-create-shop_list-table.xml" relativeToChangelogFile="true"/>
+
+    <include file="insert/2.1-changeset-insert-category-data.xml" relativeToChangelogFile="true"/>
+
+    <include file="insert/2.2-changeset-insert-toy-data.xml" relativeToChangelogFile="true"/>
+
+    <include file="insert/2.3-changeset-insert-storage-data.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

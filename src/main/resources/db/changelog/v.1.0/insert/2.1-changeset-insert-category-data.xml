@@ -6,16 +6,18 @@
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
     <changeSet id="2.1" author="Vladimir_Kirdyankin">
-<!--        <sql dbms="oracle"-->
-<!--             endDelimiter=";"-->
-<!--             splitStatements="true"-->
-<!--             stripComments="true">-->
-<!--            MERGE INTO EMPLOYEES  dest-->
-<!--            USING  (SELECT 2   AS id, 'John Doe2'  AS Name,  1 AS DEPARTMENT_ID, 'Clerk'  AS DESIGNATION, 40000 AS SALARY  FROM   dual) src-->
-<!--            ON (dest.id = src.id )-->
-<!--            WHEN NOT matched THEN-->
-<!--            INSERT (dest.ID,dest.NAME,dest.DEPARTMENT_ID,dest.DESIGNATION,dest.SALARY) VALUES  (src.ID,src.NAME,src.DEPARTMENT_ID,src.DESIGNATION,src.SALARY) ;-->
-<!--        </sql>-->
+        <insert
+                tableName="category">
+            <column name="name" value="Мягкая игрушка"/>
+        </insert>
+        <insert
+                tableName="category">
+            <column name="name" value="Подвеска"/>
+        </insert>
+        <insert
+                tableName="category">
+            <column name="name" value="Мишура"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>

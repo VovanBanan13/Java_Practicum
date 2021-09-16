@@ -5,21 +5,17 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <changeSet id="1.2" author="Vladimir_Kirdyankin">
-        <createTable tableName="toy">
+    <changeSet id="1.4" author="Vladimir_Kirdyankin">
+        <createTable tableName="user">
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="name" type="varchar(64)"/>
-            <column name="price" type="double"/>
-            <column name="category_id" type="int"/>
+            <column name="role" type="varchar(16)"/>
         </createTable>
-        <addForeignKeyConstraint baseTableName="toy" baseColumnNames="category_id"
-                                 constraintName="toy_category_id_category_id"
-                                 referencedTableName="category" referencedColumnNames="id" onUpdate="CASCADE"/>
 
         <rollback>
-            <dropTable tableName="toy"/>
+            <dropTable tableName="user"/>
         </rollback>
     </changeSet>
 
