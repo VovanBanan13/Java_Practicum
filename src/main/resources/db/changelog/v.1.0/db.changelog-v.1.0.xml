@@ -24,10 +24,4 @@
 
     <include file="insert/2.3-changeset-insert-storage-data.xml" relativeToChangelogFile="true"/>
 
-    <include file="insert/2.4-changeset-insert-user-data.xml" relativeToChangelogFile="true"/>
-
-    <include file="insert/2.5-changeset-insert-order-data.xml" relativeToChangelogFile="true"/>
-
-    <include file="insert/2.6-changeset-insert-shop_list-data.xml" relativeToChangelogFile="true"/>
-
 </databaseChangeLog>
