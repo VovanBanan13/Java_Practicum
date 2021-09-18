@@ -7,12 +7,12 @@
 
     <changeSet id="2.4" author="Vladimir_Kirdyankin">
         <insert
-                tableName="user">
+                tableName="users">
             <column name="name" value="Владимир"/>
             <column name="role" value="ADMIN"/>
         </insert>
         <insert
-                tableName="user">
+                tableName="users">
             <column name="name" value="Алексей"/>
             <column name="role" value="CUSTOMER"/>
         </insert>

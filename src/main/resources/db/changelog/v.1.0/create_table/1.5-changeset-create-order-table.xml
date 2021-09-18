@@ -15,8 +15,8 @@
             <column name="user_id" type="int"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="order" baseColumnNames="user_id"
-                                 constraintName="order_user_id_user_id"
-                                 referencedTableName="user" referencedColumnNames="id" onUpdate="CASCADE"/>
+                                 constraintName="order_user_id_users_id"
+                                 referencedTableName="users" referencedColumnNames="id" onUpdate="CASCADE"/>
 
         <rollback>
             <dropTable tableName="order"/>

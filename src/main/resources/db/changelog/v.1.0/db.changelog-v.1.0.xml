@@ -12,7 +12,7 @@
 
     <include file="create_table/1.3-changeset-create-storage-table.xml" relativeToChangelogFile="true"/>
 
-    <include file="create_table/1.4-changeset-create-user-table.xml" relativeToChangelogFile="true"/>
+    <include file="create_table/1.4-changeset-create-users-table.xml" relativeToChangelogFile="true"/>
 
     <include file="create_table/1.5-changeset-create-order-table.xml" relativeToChangelogFile="true"/>
 
@@ -24,7 +24,7 @@
 
     <include file="insert/2.3-changeset-insert-storage-data.xml" relativeToChangelogFile="true"/>
 
-    <include file="insert/2.4-changeset-insert-user-data.xml" relativeToChangelogFile="true"/>
+    <include file="insert/2.4-changeset-insert-users-data.xml" relativeToChangelogFile="true"/>
 
     <include file="insert/2.5-changeset-insert-order-data.xml" relativeToChangelogFile="true"/>
 
