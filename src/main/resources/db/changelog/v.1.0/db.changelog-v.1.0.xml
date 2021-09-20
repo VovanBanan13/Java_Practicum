@@ -14,7 +14,7 @@
 
     <include file="create_table/1.4-changeset-create-users-table.xml" relativeToChangelogFile="true"/>
 
-    <include file="create_table/1.5-changeset-create-order-table.xml" relativeToChangelogFile="true"/>
+    <include file="create_table/1.5-changeset-create-orders-table.xml" relativeToChangelogFile="true"/>
 
     <include file="create_table/1.6-changeset-create-shop_list-table.xml" relativeToChangelogFile="true"/>
 
@@ -26,7 +26,7 @@
 
     <include file="insert/2.4-changeset-insert-users-data.xml" relativeToChangelogFile="true"/>
 
-    <include file="insert/2.5-changeset-insert-order-data.xml" relativeToChangelogFile="true"/>
+    <include file="insert/2.5-changeset-insert-orders-data.xml" relativeToChangelogFile="true"/>
 
     <include file="insert/2.6-changeset-insert-shop_list-data.xml" relativeToChangelogFile="true"/>
 

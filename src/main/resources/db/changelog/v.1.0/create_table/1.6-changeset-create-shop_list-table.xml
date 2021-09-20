@@ -15,8 +15,8 @@
             <column name="count" type="int"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="shop_list" baseColumnNames="order_id"
-                                 constraintName="shop_list_order_id_order_id"
-                                 referencedTableName="order" referencedColumnNames="id" onUpdate="CASCADE"/>
+                                 constraintName="shop_list_order_id_orders_id"
+                                 referencedTableName="orders" referencedColumnNames="id" onUpdate="CASCADE"/>
         <addForeignKeyConstraint baseTableName="shop_list" baseColumnNames="toy_id"
                                  constraintName="shop_list_toy_id_toy_id"
                                  referencedTableName="toy" referencedColumnNames="id" onUpdate="CASCADE"/>

@@ -7,13 +7,13 @@
 
     <changeSet id="2.5" author="Vladimir_Kirdyankin">
         <insert
-                tableName="order">
+                tableName="orders">
             <column name="date" value="30.08.2021"/>
             <column name="time" value="15:45"/>
             <column name="user_id" value="2"/>
         </insert>
         <insert
-                tableName="order">
+                tableName="orders">
             <column name="date" value="07.09.2021"/>
             <column name="time" value="09:08"/>
             <column name="user_id" value="2"/>

@@ -6,7 +6,7 @@
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
     <changeSet id="1.5" author="Vladimir_Kirdyankin">
-        <createTable tableName="order">
+        <createTable tableName="orders">
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
@@ -14,8 +14,8 @@
             <column name="time" type="time"/>
             <column name="user_id" type="int"/>
         </createTable>
-        <addForeignKeyConstraint baseTableName="order" baseColumnNames="user_id"
-                                 constraintName="order_user_id_users_id"
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="user_id"
+                                 constraintName="orders_user_id_users_id"
                                  referencedTableName="users" referencedColumnNames="id" onUpdate="CASCADE"/>
 
         <rollback>

@@ -1,7 +1,8 @@
 package ru.home.models;
 
+
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @ToString
-@Table(name="order")
+@Table(name="orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
