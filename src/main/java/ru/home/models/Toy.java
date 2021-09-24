@@ -32,12 +32,12 @@ public class Toy {
     @Getter
     @Setter
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", updatable = false)
     private Category category = new Category();
 
-    @OneToMany(mappedBy = "toy", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "toy", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Storage> storages;
 
-    @OneToMany(mappedBy = "toy", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "toy", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ShopList> shopLists;
 }

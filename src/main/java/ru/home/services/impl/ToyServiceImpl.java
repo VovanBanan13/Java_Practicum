@@ -36,7 +36,7 @@ public class ToyServiceImpl implements ToyService {
 
     @Override
     public void save(Toy toy) {
-        if(toy.getName()==null || toy.getPrice()==0 || toy.getCategory()==null)
+        if(toy.getName()==null || toy.getCategory()==null)
             throw new ObjectNotFoundAdvice();
         this.toyRepository.save(toy);
     }

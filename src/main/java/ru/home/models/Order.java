@@ -38,6 +38,6 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user = new User();
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ShopList> shopLists;
 }
