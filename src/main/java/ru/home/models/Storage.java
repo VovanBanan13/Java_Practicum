@@ -23,7 +23,7 @@ public class Storage {
     @Setter
     @ManyToOne
     @JoinColumn(name = "toy_id")
-    private Toy toy = new Toy();
+    private Toy toy;
 
     @Getter
     @Setter

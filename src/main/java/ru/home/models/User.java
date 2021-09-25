@@ -1,5 +1,6 @@
 package ru.home.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Getter;
@@ -31,5 +32,5 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package ru.home.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Getter;
@@ -24,6 +25,6 @@ public class Category {
     @Column(name="name")
     private String name;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Toy> toys;
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Toy> toys = new ArrayList<>();
 }

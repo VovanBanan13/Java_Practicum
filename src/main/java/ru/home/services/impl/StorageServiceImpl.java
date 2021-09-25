@@ -36,7 +36,7 @@ public class StorageServiceImpl implements StorageService {
 
     @Override
     public void save(Storage storage) {
-        if(storage.getToy()==null || storage.getCount()==0)
+        if(storage.getToy()==null)
             throw new ObjectNotFoundAdvice();
         this.storageRepository.save(storage);
     }

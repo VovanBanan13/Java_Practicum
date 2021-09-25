@@ -36,7 +36,7 @@ public class ShopListServiceImpl implements ShopListService {
 
     @Override
     public void save(ShopList shopList) {
-        if(shopList.getOrder()==null || shopList.getToy()==null || shopList.getCount()==0)
+        if(shopList.getOrder()==null || shopList.getToy()==null)
             throw new ObjectNotFoundAdvice();
         this.shopListRepository.save(shopList);
     }

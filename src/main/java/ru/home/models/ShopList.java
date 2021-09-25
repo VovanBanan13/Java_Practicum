@@ -29,13 +29,13 @@ public class ShopList {
     @Setter
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order = new Order();
+    private Order order;
 
     @Getter
     @Setter
     @ManyToOne
     @JoinColumn(name = "toy_id")
-    private Toy toy = new Toy();
+    private Toy toy;
 
     @Getter
     @Setter

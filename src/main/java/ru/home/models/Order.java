@@ -3,6 +3,7 @@ package ru.home.models;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Getter;
@@ -36,8 +37,8 @@ public class Order {
     @Setter
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user = new User();
+    private User user;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ShopList> shopLists;
+    private List<ShopList> shopLists = new ArrayList<>();
 }

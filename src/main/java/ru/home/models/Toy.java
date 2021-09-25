@@ -1,5 +1,6 @@
 package ru.home.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Getter;
@@ -32,12 +33,12 @@ public class Toy {
     @Getter
     @Setter
     @ManyToOne
-    @JoinColumn(name = "category_id", updatable = false)
-    private Category category = new Category();
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @OneToMany(mappedBy = "toy", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Storage> storages;
+    private List<Storage> storages = new ArrayList<>();
 
     @OneToMany(mappedBy = "toy", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ShopList> shopLists;
+    private List<ShopList> shopLists = new ArrayList<>();
 }
