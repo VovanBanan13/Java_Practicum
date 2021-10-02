@@ -41,4 +41,20 @@ public class Order {
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ShopList> shopLists = new ArrayList<>();
+
+    public int getCountTotal() {
+        int count = 0;
+        for (ShopList toyList : this.shopLists) {
+            count += toyList.getCount();
+        }
+        return count;
+    }
+
+    public double getAmountTotal() {
+        double total = 0;
+        for (ShopList toyList : this.shopLists) {
+            total += toyList.getAmount();
+        }
+        return total;
+    }
 }

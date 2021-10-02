@@ -41,4 +41,8 @@ public class ShopList {
     @Setter
     @Column(name="count")
     private int count;
+
+    public double getAmount() {
+        return this.toy.getPrice() * this.count;
+    }
 }
