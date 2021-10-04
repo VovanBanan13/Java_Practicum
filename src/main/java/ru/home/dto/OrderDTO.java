@@ -1,7 +1,7 @@
 package ru.home.dto;
 
 import java.sql.Time;
-import java.sql.Date;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
