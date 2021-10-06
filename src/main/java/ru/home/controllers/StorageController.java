@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.home.dto.StorageDTO;
+import ru.home.dto.StorageDto;
 import ru.home.mappers.StorageMapper;
 import ru.home.models.Storage;
 import ru.home.services.StorageService;
@@ -30,39 +30,39 @@ public class StorageController {
     }
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<StorageDTO>> getAllStorages() {
+    public ResponseEntity<List<StorageDto>> getAllStorages() {
         List<Storage> storages = storageService.findAllStorages();
 
-        return new ResponseEntity<>(storageMapper.toStorageDTOS(storages), HttpStatus.OK);
+        return new ResponseEntity<>(storageMapper.toStorageDtos(storages), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<StorageDTO> getStorage(@PathVariable("id") Integer id) {
+    public ResponseEntity<StorageDto> getStorage(@PathVariable("id") Integer id) {
         Storage storage = storageService.getById(id);
 
-        return new ResponseEntity<>(storageMapper.EntityToDto(storage), HttpStatus.OK);
+        return new ResponseEntity<>(storageMapper.entityToDto(storage), HttpStatus.OK);
     }
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<StorageDTO> createStorage(@RequestBody Storage storage) {
+    public ResponseEntity<StorageDto> createStorage(@RequestBody Storage storage) {
         storageService.save(storage);
 
-        return new ResponseEntity<>(storageMapper.EntityToDto(storage), HttpStatus.CREATED);
+        return new ResponseEntity<>(storageMapper.entityToDto(storage), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<StorageDTO> updateStorage(@PathVariable("id") Integer id, @RequestBody Storage storage) {
+    public ResponseEntity<StorageDto> updateStorage(@PathVariable("id") Integer id, @RequestBody Storage storage) {
         Storage changedStorage = storageService.update(id, storage);
 
-        return new ResponseEntity<>(storageMapper.EntityToDto(changedStorage), HttpStatus.OK);
+        return new ResponseEntity<>(storageMapper.entityToDto(changedStorage), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<StorageDTO> deleteStorage(@PathVariable("id") Integer id) {
+    public ResponseEntity<StorageDto> deleteStorage(@PathVariable("id") Integer id) {
         Storage storage = storageService.getById(id);
 
         storageService.delete(id);
 
-        return new ResponseEntity<>(storageMapper.EntityToDto(storage),HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(storageMapper.entityToDto(storage),HttpStatus.NO_CONTENT);
     }
 }

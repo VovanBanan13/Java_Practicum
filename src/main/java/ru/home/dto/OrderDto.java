@@ -1,5 +1,7 @@
 package ru.home.dto;
 
+import java.sql.Time;
+import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShopListDTO {
+public class OrderDto {
     private int id;
-    private int order_id;
-    private int toy_id;
-    private int count;
+    private Date date;
+    private Time time;
+    private int user_id;
 }

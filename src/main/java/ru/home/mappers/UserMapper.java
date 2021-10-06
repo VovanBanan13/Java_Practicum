@@ -5,7 +5,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.home.dto.UserDTO;
+import ru.home.dto.UserDto;
 import ru.home.models.User;
 
 @Component
@@ -13,23 +13,23 @@ public class UserMapper {
     @Autowired
     ModelMapper modelMapper;
 
-    public UserDTO EntityToDto(User user) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
-        userDTO.setName(user.getName());
-        userDTO.setRole(user.getRole().toString());
-        return userDTO;
+    public UserDto entityToDto(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setName(user.getName());
+        userDto.setRole(user.getRole().toString());
+        return userDto;
     }
 
-    public List<UserDTO> toUserDTOS(List<User> users) {
-        List<UserDTO> userDTOS = new ArrayList<>();
+    public List<UserDto> toUserDtos(List<User> users) {
+        List<UserDto> userDtos = new ArrayList<>();
         for (User user : users) {
-            UserDTO userDTO = new UserDTO();
-            userDTO.setId(user.getId());
-            userDTO.setName(user.getName());
-            userDTO.setRole(String.valueOf(user.getRole()));
-            userDTOS.add(userDTO);
+            UserDto userDto = new UserDto();
+            userDto.setId(user.getId());
+            userDto.setName(user.getName());
+            userDto.setRole(String.valueOf(user.getRole()));
+            userDtos.add(userDto);
         }
-        return userDTOS;
+        return userDtos;
     }
 }

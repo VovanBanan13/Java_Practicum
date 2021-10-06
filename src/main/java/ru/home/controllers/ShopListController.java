@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.home.dto.ShopListDTO;
+import ru.home.dto.ShopListDto;
 import ru.home.mappers.ShopListMapper;
 import ru.home.models.ShopList;
 import ru.home.services.ShopListService;
@@ -30,39 +30,39 @@ public class ShopListController {
     }
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<ShopListDTO>> getAllShopLists() {
+    public ResponseEntity<List<ShopListDto>> getAllShopLists() {
         List<ShopList> shopLists = shopListService.findAllShopLists();
 
-        return new ResponseEntity<>(shopListMapper.toShopListDTOS(shopLists), HttpStatus.OK);
+        return new ResponseEntity<>(shopListMapper.toShopListDtos(shopLists), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<ShopListDTO> getShopList(@PathVariable("id") Integer id) {
+    public ResponseEntity<ShopListDto> getShopList(@PathVariable("id") Integer id) {
         ShopList shopList = shopListService.getById(id);
 
-        return new ResponseEntity<>(shopListMapper.EntityToDto(shopList), HttpStatus.OK);
+        return new ResponseEntity<>(shopListMapper.entityToDto(shopList), HttpStatus.OK);
     }
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<ShopListDTO> createShopList(@RequestBody ShopList shopList) {
+    public ResponseEntity<ShopListDto> createShopList(@RequestBody ShopList shopList) {
         shopListService.save(shopList);
 
-        return new ResponseEntity<>(shopListMapper.EntityToDto(shopList), HttpStatus.CREATED);
+        return new ResponseEntity<>(shopListMapper.entityToDto(shopList), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<ShopListDTO> updateShopList(@PathVariable("id") Integer id, @RequestBody ShopList shopList) {
+    public ResponseEntity<ShopListDto> updateShopList(@PathVariable("id") Integer id, @RequestBody ShopList shopList) {
         ShopList changedShopList = shopListService.update(id, shopList);
 
-        return new ResponseEntity<>(shopListMapper.EntityToDto(changedShopList), HttpStatus.OK);
+        return new ResponseEntity<>(shopListMapper.entityToDto(changedShopList), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<ShopListDTO> deleteShopList(@PathVariable("id") Integer id) {
+    public ResponseEntity<ShopListDto> deleteShopList(@PathVariable("id") Integer id) {
         ShopList shopList = shopListService.getById(id);
 
         shopListService.delete(id);
 
-        return new ResponseEntity<>(shopListMapper.EntityToDto(shopList),HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(shopListMapper.entityToDto(shopList),HttpStatus.NO_CONTENT);
     }
 }
