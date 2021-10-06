@@ -42,18 +42,18 @@ public class BuyController {
 
     @PostMapping(produces = "application/json")
     //public ResponseEntity<ShopListDTO> createBuy(@RequestBody List<ShopList> shopList) {
-    public void createBuy(@RequestBody Map<Toy, Integer> buyList, User user) {
+    public void createBuy(@RequestBody List<ShopList> buyList, User user) {
         Order order = new Order();
         order.setDate(new Date());
         order.setTime(new Time(1));
         order.setUser(user);
         orderService.save(order);
 
-        for (Map.Entry<Toy, Integer> buyToy : buyList.entrySet()) {
+        for (ShopList buyToy : buyList) {
             ShopList shopList = new ShopList();
             shopList.setOrder(order);
-            shopList.setToy(buyToy.getKey());
-            shopList.setCount(buyToy.getValue());
+            shopList.setToy(buyToy.getToy());
+            shopList.setCount(buyToy.getCount());
 
             shopListService.save(shopList);
         }
