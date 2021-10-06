@@ -45,4 +45,14 @@ public class ShopListServiceImpl implements ShopListService {
     public void delete(int id) {
         shopListRepository.deleteById(id);
     }
+
+    @Override
+    public ShopList update(int id, ShopList shopList) {
+        ShopList changedShopList = shopListRepository.findById(id).orElseThrow(() -> new ObjectNotFoundAdvice());
+        changedShopList.setOrder(shopList.getOrder());
+        changedShopList.setToy(shopList.getToy());
+        changedShopList.setCount(shopList.getCount());
+        this.shopListRepository.save(changedShopList);
+        return changedShopList;
+    }
 }

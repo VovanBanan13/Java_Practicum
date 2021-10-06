@@ -52,13 +52,8 @@ public class OrderController {
 
     @PutMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<OrderDTO> updateOrder(@PathVariable("id") Integer id, @RequestBody Order order) {
-        Order changedOrder = orderService.getById(id);
+        Order changedOrder = orderService.update(id, order);
 
-        changedOrder.setDate(order.getDate());
-        changedOrder.setTime(order.getTime());
-        changedOrder.setUser(order.getUser());
-
-        orderService.save(changedOrder);
         return new ResponseEntity<>(orderMapper.EntityToDto(changedOrder), HttpStatus.OK);
     }
 

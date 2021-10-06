@@ -52,13 +52,8 @@ public class ShopListController {
 
     @PutMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<ShopListDTO> updateShopList(@PathVariable("id") Integer id, @RequestBody ShopList shopList) {
-        ShopList changedShopList = shopListService.getById(id);
+        ShopList changedShopList = shopListService.update(id, shopList);
 
-        changedShopList.setOrder(shopList.getOrder());
-        changedShopList.setToy(shopList.getToy());
-        changedShopList.setCount(shopList.getCount());
-
-        shopListService.save(changedShopList);
         return new ResponseEntity<>(shopListMapper.EntityToDto(changedShopList), HttpStatus.OK);
     }
 

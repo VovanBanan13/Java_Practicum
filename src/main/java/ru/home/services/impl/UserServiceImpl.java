@@ -45,4 +45,13 @@ public class UserServiceImpl implements UserService {
     public void delete(int id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public User update(int id, User user) {
+        User changedUser = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundAdvice());
+        changedUser.setName(user.getName());
+        changedUser.setRole(user.getRole());
+        this.userRepository.save(changedUser);
+        return changedUser;
+    }
 }

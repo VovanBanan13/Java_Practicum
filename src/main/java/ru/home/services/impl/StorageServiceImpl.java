@@ -45,4 +45,13 @@ public class StorageServiceImpl implements StorageService {
     public void delete(int id) {
         storageRepository.deleteById(id);
     }
+
+    @Override
+    public Storage update(int id, Storage storage) {
+        Storage changedStorage = storageRepository.findById(id).orElseThrow(() -> new ObjectNotFoundAdvice());
+        changedStorage.setToy(storage.getToy());
+        changedStorage.setCount(storage.getCount());
+        this.storageRepository.save(changedStorage);
+        return changedStorage;
+    }
 }

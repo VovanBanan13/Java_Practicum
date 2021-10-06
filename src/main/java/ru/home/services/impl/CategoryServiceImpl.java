@@ -45,4 +45,12 @@ public class CategoryServiceImpl implements CategoryService {
     public void delete(int id) {
         categoryRepository.deleteById(id);
     }
+
+    @Override
+    public Category update(int id, Category category) {
+        Category changedCategory = categoryRepository.findById(id).orElseThrow(() -> new ObjectNotFoundAdvice());
+        changedCategory.setName(category.getName());
+        this.categoryRepository.save(changedCategory);
+        return changedCategory;
+    }
 }

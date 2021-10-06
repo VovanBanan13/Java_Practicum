@@ -45,4 +45,14 @@ public class OrderServiceImpl implements OrderService {
     public void delete(int id) {
         orderRepository.deleteById(id);
     }
+
+    @Override
+    public Order update(int id, Order order) {
+        Order changedOrder = orderRepository.findById(id).orElseThrow(() -> new ObjectNotFoundAdvice());
+        changedOrder.setDate(order.getDate());
+        changedOrder.setTime(order.getTime());
+        changedOrder.setUser(order.getUser());
+        this.orderRepository.save(changedOrder);
+        return changedOrder;
+    }
 }

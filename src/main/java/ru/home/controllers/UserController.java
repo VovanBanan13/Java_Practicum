@@ -52,12 +52,8 @@ public class UserController {
 
     @PutMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<UserDTO> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
-        User changedUser = userService.getById(id);
+        User changedUser = userService.update(id, user);
 
-        changedUser.setName(user.getName());
-        changedUser.setRole(user.getRole());
-
-        userService.save(changedUser);
         return new ResponseEntity<>(userMapper.EntityToDto(changedUser), HttpStatus.OK);
     }
 

@@ -52,11 +52,8 @@ public class CategoryController {
 
     @PutMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<CategoryDTO> updateCategory(@PathVariable("id") Integer id, @RequestBody Category category) {
-        Category changedCategory = categoryService.getById(id);
+        Category changedCategory = categoryService.update(id, category);
 
-        changedCategory.setName(category.getName());
-
-        categoryService.save(changedCategory);
         return new ResponseEntity<>(categoryMapper.EntityToDto(changedCategory), HttpStatus.OK);
     }
 

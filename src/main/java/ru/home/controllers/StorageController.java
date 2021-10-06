@@ -52,12 +52,8 @@ public class StorageController {
 
     @PutMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<StorageDTO> updateStorage(@PathVariable("id") Integer id, @RequestBody Storage storage) {
-        Storage changedStorage = storageService.getById(id);
+        Storage changedStorage = storageService.update(id, storage);
 
-        changedStorage.setToy(storage.getToy());
-        changedStorage.setCount(storage.getCount());
-
-        storageService.save(changedStorage);
         return new ResponseEntity<>(storageMapper.EntityToDto(changedStorage), HttpStatus.OK);
     }
 

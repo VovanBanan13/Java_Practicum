@@ -52,13 +52,8 @@ public class ToyController {
 
     @PutMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<ToyDTO> updateToy(@PathVariable("id") Integer id, @RequestBody Toy toy) {
-        Toy changedToy = toyService.getById(id);
+        Toy changedToy = toyService.update(id, toy);
 
-        changedToy.setName(toy.getName());
-        changedToy.setPrice(toy.getPrice());
-        changedToy.setCategory(toy.getCategory());
-
-        toyService.save(changedToy);
         return new ResponseEntity<>(toyMapper.EntityToDto(changedToy), HttpStatus.OK);
     }
 
