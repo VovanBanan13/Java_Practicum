@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1.6" author="Vladimir_Kirdyankin">
+        <createTable tableName="shop_list">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="order_id" type="int"/>
+            <column name="toy_id" type="int"/>
+            <column name="count" type="int"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="shop_list" baseColumnNames="order_id"
+                                 constraintName="shop_list_order_id_orders_id"
+                                 referencedTableName="orders" referencedColumnNames="id" onUpdate="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="shop_list" baseColumnNames="toy_id"
+                                 constraintName="shop_list_toy_id_toy_id"
+                                 referencedTableName="toy" referencedColumnNames="id" onUpdate="CASCADE"/>
+
+        <rollback>
+            <dropTable tableName="shop_list"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
