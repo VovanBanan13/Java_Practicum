@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.home.dto.OrderDTO;
+import ru.home.dto.OrderDto;
 import ru.home.mappers.OrderMapper;
 import ru.home.models.Order;
 import ru.home.services.OrderService;
@@ -30,44 +30,39 @@ public class OrderController {
     }
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+    public ResponseEntity<List<OrderDto>> getAllOrders() {
         List<Order> orders = orderService.findAllOrders();
 
-        return new ResponseEntity<>(orderMapper.toOrderDTOS(orders), HttpStatus.OK);
+        return new ResponseEntity<>(orderMapper.toOrderDtos(orders), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<OrderDTO> getOrder(@PathVariable("id") Integer id) {
+    public ResponseEntity<OrderDto> getOrder(@PathVariable("id") Integer id) {
         Order order = orderService.getById(id);
 
-        return new ResponseEntity<>(orderMapper.EntityToDto(order), HttpStatus.OK);
+        return new ResponseEntity<>(orderMapper.entityToDto(order), HttpStatus.OK);
     }
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<OrderDTO> createOrder(@RequestBody Order order) {
+    public ResponseEntity<OrderDto> createOrder(@RequestBody Order order) {
         orderService.save(order);
 
-        return new ResponseEntity<>(orderMapper.EntityToDto(order), HttpStatus.CREATED);
+        return new ResponseEntity<>(orderMapper.entityToDto(order), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<OrderDTO> updateOrder(@PathVariable("id") Integer id, @RequestBody Order order) {
-        Order changedOrder = orderService.getById(id);
+    public ResponseEntity<OrderDto> updateOrder(@PathVariable("id") Integer id, @RequestBody Order order) {
+        Order changedOrder = orderService.update(id, order);
 
-        changedOrder.setDate(order.getDate());
-        changedOrder.setTime(order.getTime());
-        changedOrder.setUser(order.getUser());
-
-        orderService.save(changedOrder);
-        return new ResponseEntity<>(orderMapper.EntityToDto(changedOrder), HttpStatus.OK);
+        return new ResponseEntity<>(orderMapper.entityToDto(changedOrder), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<OrderDTO> deleteOrder(@PathVariable("id") Integer id) {
+    public ResponseEntity<OrderDto> deleteOrder(@PathVariable("id") Integer id) {
         Order order = orderService.getById(id);
 
         orderService.delete(id);
 
-        return new ResponseEntity<>(orderMapper.EntityToDto(order),HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(orderMapper.entityToDto(order),HttpStatus.NO_CONTENT);
     }
 }

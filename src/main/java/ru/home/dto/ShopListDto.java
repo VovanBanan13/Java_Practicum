@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShopListDTO {
+public class ShopListDto {
     private int id;
     private int order_id;
     private int toy_id;

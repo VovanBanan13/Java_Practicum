@@ -8,4 +8,5 @@ public interface StorageService {
     Storage getById(int id);
     void save(Storage storage);
     void delete(int id);
+    Storage update(int id, Storage storage);
 }

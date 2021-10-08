@@ -8,4 +8,5 @@ public interface ShopListService {
     ShopList getById(int id);
     void save(ShopList shopList);
     void delete(int id);
+    ShopList update(int id, ShopList shopList);
 }

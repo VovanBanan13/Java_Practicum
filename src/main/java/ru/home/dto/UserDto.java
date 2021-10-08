@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ToyDTO {
+public class UserDto {
     private int id;
     private String name;
-    private double price;
-    private int category_id;
+    private String role;
 }

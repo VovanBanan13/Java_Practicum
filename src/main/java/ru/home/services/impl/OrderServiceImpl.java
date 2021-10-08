@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.home.exceptions.ObjectNotFoundAdvice;
 import ru.home.models.Order;
-import ru.home.models.ShopList;
-import ru.home.models.Toy;
 import ru.home.repositories.OrderRepository;
 import ru.home.services.OrderService;
 
@@ -16,12 +14,10 @@ import ru.home.services.OrderService;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
-    private List<ShopList> shopLists;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, List<ShopList> shopLists) {
+    public OrderServiceImpl(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.shopLists = shopLists;
     }
 
     @Override
@@ -50,30 +46,13 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.deleteById(id);
     }
 
-    private ShopList findToyById(int id) {
-        for (ShopList toyList : this.shopLists) {
-            if (toyList.getToy().getId() == id) {
-                return toyList;
-            }
-        }
-        return null;
-    }
-
     @Override
-    public void addToy(Toy toy, int count) {
-        ShopList toyList = this.findToyById(toy.getId());
-
-        if (toyList == null) {
-            toyList = new ShopList();
-            toyList.setCount(0);
-            toyList.setToy(toy);
-            this.shopLists.add(toyList);
-        }
-        int newCount = toyList.getCount() + count;
-        if (newCount <= 0) {
-            this.shopLists.remove(toyList);
-        } else {
-            toyList.setCount(newCount);
-        }
+    public Order update(int id, Order order) {
+        Order changedOrder = orderRepository.findById(id).orElseThrow(() -> new ObjectNotFoundAdvice());
+        changedOrder.setDate(order.getDate());
+        changedOrder.setTime(order.getTime());
+        changedOrder.setUser(order.getUser());
+        this.orderRepository.save(changedOrder);
+        return changedOrder;
     }
 }

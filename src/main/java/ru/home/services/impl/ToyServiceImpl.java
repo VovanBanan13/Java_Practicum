@@ -45,4 +45,14 @@ public class ToyServiceImpl implements ToyService {
     public void delete(int id) {
         toyRepository.deleteById(id);
     }
+
+    @Override
+    public Toy update(int id, Toy toy) {
+        Toy changedToy = toyRepository.findById(id).orElseThrow(() -> new ObjectNotFoundAdvice());
+        changedToy.setName(toy.getName());
+        changedToy.setPrice(toy.getPrice());
+        changedToy.setCategory(toy.getCategory());
+        this.toyRepository.save(changedToy);
+        return changedToy;
+    }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.home.dto.CategoryDTO;
+import ru.home.dto.CategoryDto;
 import ru.home.mappers.CategoryMapper;
 import ru.home.models.Category;
 import ru.home.services.CategoryService;
@@ -30,42 +30,39 @@ public class CategoryController {
     }
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
         List<Category> categories = categoryService.findAllCategories();
 
-        return new ResponseEntity<>(categoryMapper.toCategoryDTOS(categories), HttpStatus.OK);
+        return new ResponseEntity<>(categoryMapper.toCategoryDtos(categories), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<CategoryDTO> getCategory(@PathVariable("id") Integer id) {
+    public ResponseEntity<CategoryDto> getCategory(@PathVariable("id") Integer id) {
         Category category = categoryService.getById(id);
 
-        return new ResponseEntity<>(categoryMapper.EntityToDto(category), HttpStatus.OK);
+        return new ResponseEntity<>(categoryMapper.entityToDto(category), HttpStatus.OK);
     }
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<CategoryDTO> createCategory(@RequestBody Category category) {
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody Category category) {
         categoryService.save(category);
 
-        return new ResponseEntity<>(categoryMapper.EntityToDto(category), HttpStatus.CREATED);
+        return new ResponseEntity<>(categoryMapper.entityToDto(category), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable("id") Integer id, @RequestBody Category category) {
-        Category changedCategory = categoryService.getById(id);
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable("id") Integer id, @RequestBody Category category) {
+        Category changedCategory = categoryService.update(id, category);
 
-        changedCategory.setName(category.getName());
-
-        categoryService.save(changedCategory);
-        return new ResponseEntity<>(categoryMapper.EntityToDto(changedCategory), HttpStatus.OK);
+        return new ResponseEntity<>(categoryMapper.entityToDto(changedCategory), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<CategoryDTO> deleteCategory(@PathVariable("id") Integer id) {
+    public ResponseEntity<CategoryDto> deleteCategory(@PathVariable("id") Integer id) {
         Category category = categoryService.getById(id);
 
         categoryService.delete(id);
 
-        return new ResponseEntity<>(categoryMapper.EntityToDto(category),HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(categoryMapper.entityToDto(category),HttpStatus.NO_CONTENT);
     }
 }

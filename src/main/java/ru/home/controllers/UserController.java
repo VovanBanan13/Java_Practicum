@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.home.dto.UserDTO;
+import ru.home.dto.UserDto;
 import ru.home.mappers.UserMapper;
 import ru.home.models.User;
 import ru.home.services.UserService;
@@ -30,43 +30,39 @@ public class UserController {
     }
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
+    public ResponseEntity<List<UserDto>> getAllUsers() {
         List<User> users = userService.findAllUsers();
 
-        return new ResponseEntity<>(userMapper.toUserDTOS(users), HttpStatus.OK);
+        return new ResponseEntity<>(userMapper.toUserDtos(users), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<UserDTO> getUser(@PathVariable("id") Integer id) {
+    public ResponseEntity<UserDto> getUser(@PathVariable("id") Integer id) {
         User user = userService.getById(id);
 
-        return new ResponseEntity<>(userMapper.EntityToDto(user), HttpStatus.OK);
+        return new ResponseEntity<>(userMapper.entityToDto(user), HttpStatus.OK);
     }
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
+    public ResponseEntity<UserDto> createUser(@RequestBody User user) {
         userService.save(user);
 
-        return new ResponseEntity<>(userMapper.EntityToDto(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(userMapper.entityToDto(user), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
-        User changedUser = userService.getById(id);
+    public ResponseEntity<UserDto> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
+        User changedUser = userService.update(id, user);
 
-        changedUser.setName(user.getName());
-        changedUser.setRole(user.getRole());
-
-        userService.save(changedUser);
-        return new ResponseEntity<>(userMapper.EntityToDto(changedUser), HttpStatus.OK);
+        return new ResponseEntity<>(userMapper.entityToDto(changedUser), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<UserDTO> deleteUser(@PathVariable("id") Integer id) {
+    public ResponseEntity<UserDto> deleteUser(@PathVariable("id") Integer id) {
         User user = userService.getById(id);
 
         userService.delete(id);
 
-        return new ResponseEntity<>(userMapper.EntityToDto(user),HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(userMapper.entityToDto(user),HttpStatus.NO_CONTENT);
     }
 }

@@ -8,4 +8,5 @@ public interface ToyService {
     Toy getById(int id);
     void save(Toy toy);
     void delete(int id);
+    Toy update(int id, Toy toy);
 }

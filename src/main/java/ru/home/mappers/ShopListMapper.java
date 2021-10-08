@@ -5,7 +5,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.home.dto.ShopListDTO;
+import ru.home.dto.ShopListDto;
 import ru.home.models.ShopList;
 
 @Component
@@ -13,25 +13,25 @@ public class ShopListMapper {
     @Autowired
     ModelMapper modelMapper;
 
-    public ShopListDTO EntityToDto(ShopList shopList) {
-        ShopListDTO shopListDTO = new ShopListDTO();
-        shopListDTO.setId(shopList.getId());
-        shopListDTO.setOrder_id(shopList.getOrder().getId());
-        shopListDTO.setToy_id(shopList.getToy().getId());
-        shopListDTO.setCount(shopList.getCount());
-        return shopListDTO;
+    public ShopListDto entityToDto(ShopList shopList) {
+        ShopListDto shopListDto = new ShopListDto();
+        shopListDto.setId(shopList.getId());
+        shopListDto.setOrder_id(shopList.getOrder().getId());
+        shopListDto.setToy_id(shopList.getToy().getId());
+        shopListDto.setCount(shopList.getCount());
+        return shopListDto;
     }
 
-    public List<ShopListDTO> toShopListDTOS(List<ShopList> shopLists) {
-        List<ShopListDTO> shopListDTOS = new ArrayList<>();
+    public List<ShopListDto> toShopListDtos(List<ShopList> shopLists) {
+        List<ShopListDto> shopListDtos = new ArrayList<>();
         for (ShopList shopList : shopLists) {
-            ShopListDTO shopListDTO = new ShopListDTO();
-            shopListDTO.setId(shopList.getId());
-            shopListDTO.setOrder_id(shopList.getOrder().getId());
-            shopListDTO.setToy_id(shopList.getToy().getId());
-            shopListDTO.setCount(shopList.getCount());
-            shopListDTOS.add(shopListDTO);
+            ShopListDto shopListDto = new ShopListDto();
+            shopListDto.setId(shopList.getId());
+            shopListDto.setOrder_id(shopList.getOrder().getId());
+            shopListDto.setToy_id(shopList.getToy().getId());
+            shopListDto.setCount(shopList.getCount());
+            shopListDtos.add(shopListDto);
         }
-        return shopListDTOS;
+        return shopListDtos;
     }
 }
