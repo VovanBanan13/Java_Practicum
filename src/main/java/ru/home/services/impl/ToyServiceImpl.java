@@ -35,6 +35,11 @@ public class ToyServiceImpl implements ToyService {
     }
 
     @Override
+    public Toy getByName(String name) {
+        return toyRepository.findByName(name).orElseThrow(() -> new ObjectNotFoundAdvice());
+    }
+
+    @Override
     public void save(Toy toy) {
         if(toy.getName()==null || toy.getCategory()==null)
             throw new ObjectNotFoundAdvice();

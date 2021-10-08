@@ -1,5 +1,6 @@
 package ru.home.models;
 
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -17,20 +18,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
+    @ApiModelProperty(notes = "The database generated user ID")
     @Column(name = "id")
     private int id;
 
     @Getter
     @Setter
+    @ApiModelProperty(notes = "The user name")
     @Column(name="name")
     private String name;
 
     @Getter
     @Setter
+    @ApiModelProperty(notes = "The user role")
     @Column(name="role")
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    @ApiModelProperty(notes = "List of orders in this user")
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 }
