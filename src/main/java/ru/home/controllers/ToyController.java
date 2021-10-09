@@ -48,6 +48,14 @@ public class ToyController {
         return new ResponseEntity<>(toyMapper.entityToDto(toy), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "View toys by the category")
+    @GetMapping(value = "/category/{id}", produces = "application/json")
+    public ResponseEntity<List<ToyDto>> getAllToyByCategory(@PathVariable("id") Integer id) {
+        List<Toy> toys = toyService.getAllToyByCategory(id);
+
+        return new ResponseEntity<>(toyMapper.toToyDtos(toys), HttpStatus.OK);
+    }
+
     @ApiOperation(value = "Add a new toy")
     @PostMapping(produces = "application/json")
     public ResponseEntity<ToyDto> createToy(@RequestBody Toy toy) {
