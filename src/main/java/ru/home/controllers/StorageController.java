@@ -2,6 +2,7 @@ package ru.home.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -72,5 +73,11 @@ public class StorageController {
         storageService.delete(id);
 
         return new ResponseEntity<>(storageMapper.entityToDto(storage),HttpStatus.NO_CONTENT);
+    }
+
+    @ApiOperation(value = "Add a toy count")
+    @PostMapping(value = "/add", produces = "application/json")
+    public void addCount(@RequestBody List<HashMap<String, Integer>> toyCountList) {
+        storageService.addToyCount(toyCountList);
     }
 }
