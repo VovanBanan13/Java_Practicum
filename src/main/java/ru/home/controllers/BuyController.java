@@ -33,7 +33,8 @@ public class BuyController {
 
     @ApiOperation(value = "Add a new buy information")
     @PostMapping(value = "/{id}", produces = "application/json")
-    public void createBuy(@PathVariable("id") Integer id, @RequestBody List<HashMap<String, Integer>> buyList) {
-        buyService.saveBuy(id, buyList);
+    public ResponseEntity<Double> createBuy(@PathVariable("id") Integer id, @RequestBody List<HashMap<String, Integer>> buyList) {
+        double sumAmount = buyService.saveBuy(id, buyList);
+        return new ResponseEntity<>(sumAmount, HttpStatus.OK);
     }
 }

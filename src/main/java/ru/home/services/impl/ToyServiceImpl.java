@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.home.exceptions.ObjectNotFoundAdvice;
 import ru.home.models.Category;
+import ru.home.models.Storage;
 import ru.home.models.Toy;
 import ru.home.repositories.CategoryRepository;
+import ru.home.repositories.StorageRepository;
 import ru.home.repositories.ToyRepository;
 import ru.home.services.ToyService;
 
@@ -18,11 +20,13 @@ public class ToyServiceImpl implements ToyService {
 
     private final ToyRepository toyRepository;
     private final CategoryRepository categoryRepository;
+    private final StorageRepository storageRepository;
 
     @Autowired
-    public ToyServiceImpl(ToyRepository toyRepository, CategoryRepository categoryRepository) {
+    public ToyServiceImpl(ToyRepository toyRepository, CategoryRepository categoryRepository, StorageRepository storageRepository) {
         this.toyRepository = toyRepository;
         this.categoryRepository = categoryRepository;
+        this.storageRepository = storageRepository;
     }
 
     @Override
@@ -59,6 +63,11 @@ public class ToyServiceImpl implements ToyService {
         if(toy.getName()==null || toy.getCategory()==null)
             throw new ObjectNotFoundAdvice();
         this.toyRepository.save(toy);
+
+        Storage storage = new Storage();
+        storage.setToy(toy);
+        storage.setCount(0);
+        this.storageRepository.save(storage);
     }
 
     @Override
