@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class OrderDto {
     private int id;
     private Date date;
-    private Time time;
+    private Date time;
+    private double amount;
     private int user_id;
 }

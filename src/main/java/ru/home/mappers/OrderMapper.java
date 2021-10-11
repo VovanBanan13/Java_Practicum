@@ -19,6 +19,7 @@ public class OrderMapper {
         orderDto.setId(order.getId());
         orderDto.setDate(order.getDate());
         orderDto.setTime(order.getTime());
+        orderDto.setAmount(order.getAmount());
         orderDto.setUser_id(order.getUser().getId());
         return orderDto;
     }
@@ -30,6 +31,7 @@ public class OrderMapper {
             orderDto.setId(order.getId());
             orderDto.setDate(order.getDate());
             orderDto.setTime(order.getTime());
+            orderDto.setAmount(order.getAmount());
             orderDto.setUser_id(order.getUser().getId());
             orderDtos.add(orderDto);
         }

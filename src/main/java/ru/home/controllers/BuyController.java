@@ -2,6 +2,7 @@ package ru.home.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class BuyController {
 
     @ApiOperation(value = "Add a new buy information")
     @PostMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<Double> createBuy(@PathVariable("id") Integer id, @RequestBody List<HashMap<String, Integer>> buyList) {
+    public ResponseEntity<Double> createBuy(@PathVariable("id") Integer id, @RequestBody List<HashMap<String, Integer>> buyList) throws ParseException {
         double sumAmount = buyService.saveBuy(id, buyList);
         return new ResponseEntity<>(sumAmount, HttpStatus.OK);
     }

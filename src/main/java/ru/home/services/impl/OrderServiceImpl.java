@@ -51,6 +51,7 @@ public class OrderServiceImpl implements OrderService {
         Order changedOrder = orderRepository.findById(id).orElseThrow(() -> new ObjectNotFoundAdvice());
         changedOrder.setDate(order.getDate());
         changedOrder.setTime(order.getTime());
+        changedOrder.setAmount(order.getAmount());
         changedOrder.setUser(order.getUser());
         this.orderRepository.save(changedOrder);
         return changedOrder;

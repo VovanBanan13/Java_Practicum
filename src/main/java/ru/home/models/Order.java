@@ -35,7 +35,13 @@ public class Order {
     @Setter
     @ApiModelProperty(notes = "Time of created the order")
     @Column(name="time")
-    private Time time;
+    private Date time;
+
+    @Getter
+    @Setter
+    @ApiModelProperty(notes = "The order amount")
+    @Column(name="amount")
+    private double amount;
 
     @Getter
     @Setter

@@ -1,6 +1,12 @@
 package ru.home.services.impl;
 
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -42,8 +48,20 @@ public class BuyServiceImpl implements BuyService {
     @Override
     public double saveBuy(int id, List<HashMap<String, Integer>> buyList) {
         Order order = new Order();
-        order.setDate(new Date());
-        order.setTime(new Time(1));
+        Date dateRaw = new Date();
+        DateFormat dateStr = new SimpleDateFormat("dd.MM.yyyy");
+        DateFormat timeStr = new SimpleDateFormat("HH:mm:ss");
+        Date onlyDate = null;
+        Date onlyTime = null;
+        try {
+            onlyDate = new SimpleDateFormat("dd.MM.yyyy").parse(dateStr.format(dateRaw));
+            onlyTime = new SimpleDateFormat("HH:mm:ss").parse(timeStr.format(dateRaw));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        order.setDate(onlyDate);
+        order.setTime(onlyTime);
         User user = userService.getById(id);
         order.setUser(user);
         orderService.save(order);
@@ -63,6 +81,8 @@ public class BuyServiceImpl implements BuyService {
                 this.storageService.save(storage);
             }
         }
+        order.setAmount(sumAmount);
+        orderService.save(order);
         return sumAmount;
     }
 
