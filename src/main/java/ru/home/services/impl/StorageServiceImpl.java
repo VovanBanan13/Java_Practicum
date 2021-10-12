@@ -68,6 +68,13 @@ public class StorageServiceImpl implements StorageService {
         return changedStorage;
     }
 
+    /**
+     * Добавление товаров на склад, список товаров в json в виде:
+     *      [{"toy_1":x}, {"toy_2":x}, {"toy_3":x}, ..., {"toy_n":x}] ,
+     *      где "toy_n" - название товара, x - количество товаров на добавление.
+     *
+     * @param toyList Лист товаров с количеством
+     */
     @Override
     public void addToyCount(List<HashMap<String, Integer>> toyList) {
         for (HashMap<String, Integer> toyListMap : toyList) {
