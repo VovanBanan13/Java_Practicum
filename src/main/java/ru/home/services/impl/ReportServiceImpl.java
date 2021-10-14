@@ -1,5 +1,6 @@
 package ru.home.services.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,22 @@ public class ReportServiceImpl implements ReportService {
                 toys.put(shopList.getToy().getName(), toys.get(shopList.getToy().getName()) + shopList.getCount());
             } else {
                 toys.put(shopList.getToy().getName(), shopList.getCount());
+            }
+        }
+        return toys;
+    }
+
+    @Override
+    public Map<String, Integer> getToysSoldByTime(Date startDate, Date endDate) {
+        List<ShopList> shopLists = shopListService.findAllShopLists();
+        Map<String, Integer> toys = new HashMap<>();
+        for (ShopList shopList : shopLists) {
+            if (shopList.getOrder().getDate().after(startDate) && shopList.getOrder().getDate().before(endDate)) {
+                if (toys.keySet().contains(shopList.getToy().getName())) {
+                    toys.put(shopList.getToy().getName(), toys.get(shopList.getToy().getName()) + shopList.getCount());
+                } else {
+                    toys.put(shopList.getToy().getName(), shopList.getCount());
+                }
             }
         }
         return toys;

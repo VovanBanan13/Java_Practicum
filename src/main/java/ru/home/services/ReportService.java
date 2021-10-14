@@ -1,5 +1,6 @@
 package ru.home.services;
 
+import java.util.Date;
 import java.util.Map;
 
 public interface ReportService {
@@ -23,4 +24,13 @@ public interface ReportService {
      * @return Проданные товары и их количество
      */
     Map<String, Integer> getToysSold();
+
+    /**
+     * Вывод проданных товаров в промежутке времени.
+     *
+     * @param startDate Дата начала
+     * @param endDate Дата конца
+     * @return Проданные товары и их количество
+     */
+    Map<String, Integer> getToysSoldByTime(Date startDate, Date endDate);
 }
