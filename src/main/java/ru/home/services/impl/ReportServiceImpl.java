@@ -1,19 +1,25 @@
 package ru.home.services.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.home.models.Order;
+import ru.home.models.ShopList;
 import ru.home.services.OrderService;
 import ru.home.services.ReportService;
+import ru.home.services.ShopListService;
 
 @Service
 @Transactional
 public class ReportServiceImpl implements ReportService {
     private final OrderService orderService;
+    private final ShopListService shopListService;
 
-    public ReportServiceImpl(OrderService orderService) {
+    public ReportServiceImpl(OrderService orderService, ShopListService shopListService) {
         this.orderService = orderService;
+        this.shopListService = shopListService;
     }
 
     @Override
@@ -40,5 +46,19 @@ public class ReportServiceImpl implements ReportService {
         avg = avg/100;
 
         return avg;
+    }
+
+    @Override
+    public Map<String, Integer> getToysSold() {
+        List<ShopList> shopLists = shopListService.findAllShopLists();
+        Map<String, Integer> toys = new HashMap<>();
+        for (ShopList shopList : shopLists) {
+            if (toys.keySet().contains(shopList.getToy().getName())) {
+                toys.put(shopList.getToy().getName(), toys.get(shopList.getToy().getName()) + shopList.getCount());
+            } else {
+                toys.put(shopList.getToy().getName(), shopList.getCount());
+            }
+        }
+        return toys;
     }
 }
