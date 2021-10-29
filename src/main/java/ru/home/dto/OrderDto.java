@@ -1,7 +1,7 @@
 package ru.home.dto;
 
 import java.sql.Time;
-import java.sql.Date;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class OrderDto {
     private int id;
     private Date date;
-    private Time time;
+    private Date time;
+    private double amount;
     private int user_id;
 }

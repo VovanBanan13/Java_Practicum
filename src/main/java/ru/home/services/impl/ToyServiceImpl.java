@@ -1,11 +1,16 @@
 package ru.home.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.home.exceptions.ObjectNotFoundAdvice;
+import ru.home.models.Category;
+import ru.home.models.Storage;
 import ru.home.models.Toy;
+import ru.home.repositories.CategoryRepository;
+import ru.home.repositories.StorageRepository;
 import ru.home.repositories.ToyRepository;
 import ru.home.services.ToyService;
 
@@ -14,10 +19,14 @@ import ru.home.services.ToyService;
 public class ToyServiceImpl implements ToyService {
 
     private final ToyRepository toyRepository;
+    private final CategoryRepository categoryRepository;
+    private final StorageRepository storageRepository;
 
     @Autowired
-    public ToyServiceImpl(ToyRepository toyRepository) {
+    public ToyServiceImpl(ToyRepository toyRepository, CategoryRepository categoryRepository, StorageRepository storageRepository) {
         this.toyRepository = toyRepository;
+        this.categoryRepository = categoryRepository;
+        this.storageRepository = storageRepository;
     }
 
     @Override
@@ -35,10 +44,30 @@ public class ToyServiceImpl implements ToyService {
     }
 
     @Override
+    public Toy getByName(String name) {
+        return toyRepository.findByName(name).orElseThrow(() -> new ObjectNotFoundAdvice());
+    }
+
+    @Override
+    public List<Toy> getAllToyByCategory(int id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        List<Toy> toys = toyRepository.findAllByCategory(category);
+        if(toys.isEmpty()) {
+            throw new ObjectNotFoundAdvice();
+        } else
+            return toys;
+    }
+
+    @Override
     public void save(Toy toy) {
         if(toy.getName()==null || toy.getCategory()==null)
             throw new ObjectNotFoundAdvice();
         this.toyRepository.save(toy);
+
+        Storage storage = new Storage();
+        storage.setToy(toy);
+        storage.setCount(0);
+        this.storageRepository.save(storage);
     }
 
     @Override

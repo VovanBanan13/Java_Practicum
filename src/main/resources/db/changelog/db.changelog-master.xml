@@ -15,5 +15,11 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 
     <include file="v.1.0/db.changelog-v.1.0.xml" relativeToChangelogFile="true" />
 
+    <changeSet id="3" author="Vladimir_Kirdyankin">
+        <tagDatabase tag="db_update"/>
+    </changeSet>
+
+    <include file="v.1.1/db.changelog-v.1.1.xml" relativeToChangelogFile="true" />
+
 
 </databaseChangeLog>
