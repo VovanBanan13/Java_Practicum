@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="2.6" author="Vladimir_Kirdyankin">
+        <insert
+                tableName="shop_list">
+            <column name="order_id" value="1"/>
+            <column name="toy_id" value="3"/>
+            <column name="count" value="8"/>
+        </insert>
+        <insert
+                tableName="shop_list">
+            <column name="order_id" value="1"/>
+            <column name="toy_id" value="4"/>
+            <column name="count" value="8"/>
+        </insert>
+        <insert
+                tableName="shop_list">
+            <column name="order_id" value="1"/>
+            <column name="toy_id" value="5"/>
+            <column name="count" value="8"/>
+        </insert>
+        <insert
+                tableName="shop_list">
+            <column name="order_id" value="2"/>
+            <column name="toy_id" value="2"/>
+            <column name="count" value="3"/>
+        </insert>
+        <insert
+                tableName="shop_list">
+            <column name="order_id" value="2"/>
+            <column name="toy_id" value="1"/>
+            <column name="count" value="2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
