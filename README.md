@@ -2,7 +2,7 @@
 Проект для практикума Java BackEnd
 
 ## Работа со складом новогодних игрушек
-`PostgreSQL`  `Liquibase` `Hibenate` `Swagger API` `Maven` `Spring MVC` `Spring Boot` `JSON`
+`PostgreSQL`  `Liquibase` `Hibenate` `Swagger API` `Maven` `Spring MVC` `Spring Boot` `JSON` `Docker` `Docker-compose`
 ### Функции приложения
 - Управление складом:
     - Добавление 
