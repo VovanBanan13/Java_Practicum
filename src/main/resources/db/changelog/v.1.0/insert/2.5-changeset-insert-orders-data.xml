@@ -8,13 +8,13 @@
     <changeSet id="2.5" author="Vladimir_Kirdyankin">
         <insert
                 tableName="orders">
-            <column name="date" value="30.08.2021"/>
+            <column name="date" value="2021.08.30"/>
             <column name="time" value="15:45"/>
             <column name="user_id" value="2"/>
         </insert>
         <insert
                 tableName="orders">
-            <column name="date" value="07.09.2021"/>
+            <column name="date" value="2021.09.07"/>
             <column name="time" value="09:08"/>
             <column name="user_id" value="2"/>
         </insert>
